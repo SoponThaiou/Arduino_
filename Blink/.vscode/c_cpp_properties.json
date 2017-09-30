@@ -3,13 +3,13 @@
         {
             "name": "Win32",
             "includePath": [
-                "C:\\Users\\SOPONTHAIOU\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.3.0\\cores\\esp8266"
+                "C:\\Users\\SOPONE\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.3.0\\cores\\esp8266"
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": false,
                 "path": [
-                    "C:\\Users\\SOPONTHAIOU\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.3.0\\cores\\esp8266",
-                    "${workspaceRoot}"
+                    "${workspaceRoot}",
+                    "C:\\Users\\SOPONE\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.3.0\\cores\\esp8266"
                 ]
             },
             "intelliSenseMode": "msvc-x64"

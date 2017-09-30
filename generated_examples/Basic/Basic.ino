@@ -10,11 +10,15 @@ const char* password = "00000000";
 #define APPID   "Metheepittaya"
 #define KEY     "J9Kf8JeV6ikpYU5"
 #define SECRET  "TAreTCkEdswAtxJgnDrJjjlmn"
-#define ALIAS   "esp8266"
+#define ALIAS   "esp8266-2"
+#define myTopic "/Topictest"
+
+int LED_WIFI = 2;
+int counter = 0;
+int timer = 0;
 
 WiFiClient client;
 
-int timer = 0;
 MicroGear microgear(client);
 
 /* If a new message arrives, do this */
@@ -22,6 +26,21 @@ void onMsghandler(char *topic, uint8_t* msg, unsigned int msglen) {
     Serial.print("Incoming message --> ");
     msg[msglen] = '\0';
     Serial.println((char *)msg);
+
+    char strState[msglen];
+    for (int i = 0; i < msglen; i++) 
+    {
+      strState[i] = (char)msg[i];
+      Serial.print((char)msg[i]);
+    }
+
+    Serial.println(msglen);
+    String stateStr = String(strState).substring(0, msglen);
+
+    if (stateStr == "D0") 
+    {
+      microgear.publish("/Topictest", "ON");
+    } 
 }
 
 void onFoundgear(char *attribute, uint8_t* msg, unsigned int msglen) {
@@ -47,6 +66,13 @@ void onConnected(char *attribute, uint8_t* msg, unsigned int msglen) {
 
 
 void setup() {
+    /* Setup LED */
+    pinMode(LED_WIFI, OUTPUT);
+    pinMode(LED_BUILTIN, OUTPUT);
+
+    /* Setname of Gear */
+    microgear.setName("ESP8266-ใหม่");
+
     /* Add Event listeners */
 
     /* Call onMsghandler() when new message arraives */
@@ -78,36 +104,52 @@ void setup() {
     Serial.println(WiFi.localIP());
 
     /* Initial with KEY, SECRET and also set the ALIAS here */
-    microgear.init(KEY,SECRET,ALIAS);
+    microgear.init(KEY,SECRET,ALIAS,"AAAAAA");
+
+    /* Initial with client.create(gearkey,gearsecret,appid,args): */
+    //microgear.create();
 
     /* connect to NETPIE to a specific APPID */
     microgear.connect(APPID);
+
+
+    microgear.subscribe(myTopic);
 }
 
 void loop() {
-    /* To check if the microgear is still connected */
+    /* To check if the microgear  is still connected */
     if (microgear.connected()) {
         ///////////Serial.println("connected");
 
         /* Call this method regularly otherwise the connection may be lost */
         microgear.loop();
 
-        if (timer >= 10000) {
-            Serial.println("Publish...");
+        if (timer >= 1000) {
+            //Serial.println("Publish...");
 
             /* Chat with the microgear named ALIAS which is myself */
-            microgear.chat(ALIAS,"Hello");
+            microgear.chat("FromAndroidDevice",counter);
+            counter++;
+
+            /* Publish message */
+            //microgear.publish(myTopic, "55555");
+
+            digitalWrite(LED_WIFI, !digitalRead(LED_WIFI));
+            digitalWrite(LED_BUILTIN, HIGH);
             timer = 0;
         } 
         else timer += 100;
-    }
+    } 
     else {
         Serial.println("connection lost, reconnect...");
         if (timer >= 5000) {
             microgear.connect(APPID);
             timer = 0;
         }
-        else timer += 100;
+        else{
+            timer += 100;
+            digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+        }
     }
     delay(100);
 }
