@@ -11,11 +11,11 @@ const char* password = "00000000";
 #define KEY     "J9Kf8JeV6ikpYU5"
 #define SECRET  "TAreTCkEdswAtxJgnDrJjjlmn"
 #define ALIAS   "esp8266-2"
-#define myTopic "/Topictest"
+//#define myTopic "/Topictest"
 
 int LED_WIFI = 2;
-int counter = 0;
 int timer = 0;
+//int counter = 0;
 
 WiFiClient client;
 
@@ -27,20 +27,23 @@ void onMsghandler(char *topic, uint8_t* msg, unsigned int msglen) {
     msg[msglen] = '\0';
     Serial.println((char *)msg);
 
-    char strState[msglen];
-    for (int i = 0; i < msglen; i++) 
-    {
-      strState[i] = (char)msg[i];
-      Serial.print((char)msg[i]);
-    }
+    // char strState[msglen];
+    // for (int i = 0; i < msglen; i++) 
+    // {
+    //   strState[i] = (char)msg[i];
+    //   Serial.print((char)msg[i]);
+    // }
+    // Serial.println();
 
-    Serial.println(msglen);
-    String stateStr = String(strState).substring(0, msglen);
+    // Serial.println(" : Message leng = " + String(msglen));
+    // String stateStr = String(strState).substring(0, msglen);
+    // Serial.println(stateStr);
 
-    if (stateStr == "D0") 
-    {
-      microgear.publish("/Topictest", "ON");
-    } 
+    // if (stateStr == "D0") 
+    // {
+    //   //microgear.publish("/Topictest", "ON");
+    //   Serial.println("ON GPIO NO : XX");
+    // } 
 }
 
 void onFoundgear(char *attribute, uint8_t* msg, unsigned int msglen) {
@@ -71,7 +74,7 @@ void setup() {
     pinMode(LED_BUILTIN, OUTPUT);
 
     /* Setname of Gear */
-    microgear.setName("ESP8266-ใหม่");
+    //microgear.setName("ESP8266-ใหม่");
 
     /* Add Event listeners */
 
@@ -104,7 +107,7 @@ void setup() {
     Serial.println(WiFi.localIP());
 
     /* Initial with KEY, SECRET and also set the ALIAS here */
-    microgear.init(KEY,SECRET,ALIAS,"AAAAAA");
+    microgear.init(KEY,SECRET,ALIAS);
 
     /* Initial with client.create(gearkey,gearsecret,appid,args): */
     //microgear.create();
@@ -113,7 +116,7 @@ void setup() {
     microgear.connect(APPID);
 
 
-    microgear.subscribe(myTopic);
+    microgear.subscribe("/Topictest");
 }
 
 void loop() {
@@ -128,14 +131,14 @@ void loop() {
             //Serial.println("Publish...");
 
             /* Chat with the microgear named ALIAS which is myself */
-            microgear.chat("FromAndroidDevice",counter);
-            counter++;
+            //microgear.chat("FromAndroidDevice",counter);
+            //counter++;
 
             /* Publish message */
             //microgear.publish(myTopic, "55555");
 
             digitalWrite(LED_WIFI, !digitalRead(LED_WIFI));
-            digitalWrite(LED_BUILTIN, HIGH);
+            digitalWrite(LED_BUILTIN, LOW);
             timer = 0;
         } 
         else timer += 100;
