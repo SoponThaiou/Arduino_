@@ -4,21 +4,13 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceRoot}",
-                "C:\\Users\\SOPONE\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.3.0\\variants\\nodemcu",
-                "C:\\Users\\SOPONE\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.3.0\\cores\\esp8266",
-                "C:\\Users\\SOPONE\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.3.0\\libraries\\ESP8266WiFi\\src",
-                "D:\\Programming\\Arduino_\\libraries\\ESP8266_Microgear",
-                "D:\\Programming\\Arduino_\\libraries\\DHT_sensor_library"
+                "C:\\Users\\SOPONE\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.3.0\\variants\\nodemcu"
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": false,
                 "path": [
                     "${workspaceRoot}",
-                    "C:\\Users\\SOPONE\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.3.0\\variants\\nodemcu",
-                    "C:\\Users\\SOPONE\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.3.0\\cores\\esp8266",
-                    "C:\\Users\\SOPONE\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.3.0\\libraries\\ESP8266WiFi\\src",
-                    "D:\\Programming\\Arduino_\\libraries\\ESP8266_Microgear",
-                    "D:\\Programming\\Arduino_\\libraries\\DHT_sensor_library"
+                    "C:\\Users\\SOPONE\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.3.0\\variants\\nodemcu"
                 ]
             },
             "intelliSenseMode": "msvc-x64"

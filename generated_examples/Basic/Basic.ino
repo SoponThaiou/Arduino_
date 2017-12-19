@@ -6,8 +6,10 @@
 #include <MicroGear.h>
 #include <DHT.h>
 
-const char* ssid     = "OUY_2";
-const char* password = "4794459390";
+// const char* ssid     = "OUY_2";
+// const char* password = "4794459390";
+const char* ssid     = "IOT";
+const char* password = "00000000";
 
 #define APPID       "Metheepittaya"
 #define KEY         "J9Kf8JeV6ikpYU5"
